@@ -1,5 +1,7 @@
 package loja.daos;
 
+import java.util.List;
+
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,5 +18,11 @@ public class BookDAO {
 	public void save(Book product){
 		manager.persist(product);
 			
+	}
+	
+	public List<Book> list(){
+		return manager.createQuery("select b from Book b", Book.class)
+				.getResultList();
+				
 	}
 }
